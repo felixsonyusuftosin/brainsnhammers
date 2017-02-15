@@ -1,0 +1,6 @@
+.hs1{ background-image:url('../assets/img/house.jpg');} .hs2{ background-image:url('../assets/img/house2.jpg');}.hs3{ background-image:url('../assets/img/house3.jpg');}
+ .hs4{ background-image:url('../assets/img/house4.jpeg');}.hs5{ background-image:url('../assets/img/house5.jpeg');}
+.hs6{ background-image:url('../assets/img/house6.jpeg');}.hs7{ background-image:url('../assets/img/house7.jpeg');} .hs8{ background-image:url('../assets/img/house8.jpeg');}
+.logo{background-image:url('../assets/img/logo.png'); background-repeat:no-repeat;}
+.display{cursor:pointer;}
+.display:hover{background:rgba(0,0,0,0.2);}

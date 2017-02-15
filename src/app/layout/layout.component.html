@@ -1,0 +1,335 @@
+
+    <div class = "header hidden">
+        <i class = "fa fa-bars  ii pc fl mb"></i>
+        <span class = "inline-block fr transp"><i class = "fa fa-close white"></i>&nbsp;&nbsp;Remove Frame</span> <div class = "inline-block btn greenbg fr ">Buy Now</div></div><!--header is what will contain the tabs  for the head component-->
+    <div class = "subheader padding"> 
+
+    <div class = "row fullheight"> 
+        <div class = "padding bx col4 contain logo fullheight"></div>
+        <div class = " inlineblock fr ff ">
+            <span class = "pc " >Sign in</span><span class = "pc ">Register</span><div class = "btnthing  pc inlineblock "><i class = "fa fa-plus "></i></div><span><i class = "fa fa-bars  ii pc "></i></span>
+        </div>
+      </div>
+    </div>
+<div class = "bdy row ">
+    <div class = "col35 fullheight graybg hundred pad panel">
+     <div class = "row hidden mbot pd">
+         <span class = "h3 lh gray uppercase fl">Search</span>
+          <span class = "h5 lh gray capitalize fr">Advanced Search&nbsp; <i class = "fa fa-plus blue"></i></span>
+     </div><!--row-->
+   <div class  = "row hidden pc">
+    <div class = "col5 pright"><span class = "h4 lh">Property Type</span></div>
+    <div class = "col5 colpadding hidden">
+        <div class = "smalldivs"><span class = "h4 lh">Bedroom</span></div><div class  = "smalldivs fr"><span class = "h4 lh rgt">Bathrooms</span></div>
+    </div>
+
+   </div><!--row-->
+   <div class  = "row hidden mbot mtop pc">
+    <div class = "col5 pright"><div class = " h4 inputs">
+        <select  placeholder = "All">
+            <option selected = "selected">All</option>
+             <option>Duplex</option>
+             <option>Story Building</option>
+             <option>Bungalow</option>
+             <option>Others</option>
+        </select>
+        </div></div>
+    <div class = "col5 colpadding hidden">
+        <div class = "smalldivs ltop"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div>
+        <div class  = "smalldivs fr ltop"><div class = " lh rgt inputs"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div></div>
+    </div>
+    
+   </div><!--row-->
+
+   <div class  = "row hidden pc">
+    <div class = "col5 pright"><span class = "h4 lh">Price Range (Naira)</span></div>
+    <div class = "col5 colpadding hidden">
+        <div class = "smalldivs"><span class = "h4 lh">Location</span></div><div class  = "smalldivs fr"></div>
+    </div>
+
+   </div><!--row-->
+   <div class  = "row hidden mbot mtop2 pc bbottom">
+       <div class = "col5 pright rangefull mbot ">
+        <div class  ="row  col10 rangeitem" style = "">
+        <input type="text"  #example_id name="example_name" value="" />
+    </div>
+    </div>
+    <div class = "col5 colpadding hidden"><div class = " h4 inputs large"><input type = "text" placeholder = "All"><i class = "fa fa-map-marker kii"></i></div></div>
+
+       <!-- <div class = "smalldivs ltop"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div>
+        <div class  = "smalldivs fr ltop"><div class = " lh rgt inputs"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div></div>-->
+    </div>
+
+<div class  = "row hidden mb pd">
+    <div class = "col5 pright botm"><span class = "h4 lh">Property Type</span></div>
+    <div class = "col5 pright col5full botm"><div class = " h4 inputs"><input type = "text" placeholder = "All"><i class = "fa fa-angle-down fz"></i></div></div>
+    <div class = "col5 pright col5full lbotm">
+    <div class = "smalldivs col5full botm"><span class = "h4 lh">Bedroom</span></div>
+     <div class = "smalldivs ltop col5full botm"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div>
+    <div class  = "smalldivs col5full botm"><span class = "h4 lh rgt">Bathrooms</span></div>
+    <div class  = "smalldivs fr ltop col5full botm"><div class = " lh rgt inputs"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div></div>
+        <div class  = "smalldivs col5full botm"><span class = "h4 lh rgt">Location</span></div>
+    <div class  = "smalldivs fr ltop col5full botm"><div class = " lh rgt inputs"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-map-marker ki"></i> </div></div></div>
+ </div>
+   
+           <div class  ="row mtop2  col10 rangeitem">
+        <input type="text" #exampleid2 name="example_name" value="" />   
+    </div>
+
+   </div><!--row-->
+    <div class = "row hidden mbot pd">
+         <span class = "h3 lh gray uppercase fl">Results</span>
+          <span class = "h5 lh gray capitalize fr">Display:&nbsp;&nbsp;&nbsp;<i class = "fa fa-th-large blue"></i>&nbsp;&nbsp;&nbsp;<i class = "fa fa-th-list gray"></i></span>
+     </div><!--row-->
+     <div class  = "display" (click) = "openmodal()">
+    <div class = "pichold fl">
+    <div class = "pic hs2"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+          <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->   
+          <div class = "pichold fr">
+        <div class = "pic hs1"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+ <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->            
+    </div><!--display-->
+     <div class  = "display" (click) = "openmodal()">   
+        <div class = "pichold fl">
+    <div class = "pic hs4"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+  <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->  
+  
+          <div class = "pichold fr">
+        <div class = "pic hs3"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+                    <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->  
+          
+    </div><!--display-->
+             <div class  = "display" (click) = "openmodal()">   
+              <div class = "pichold fl">
+    <div class = "pic hs6"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+                    <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->         
+          <div class = "pichold fr">
+        <div class = "pic hs5"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+                    <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->  
+          </div><!--dispaly-->
+        <div class = "display" (click) = "openmodal()">
+        <div class = "pichold fl">
+    <div class = "pic hs8"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+                    <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->            
+          <div class = "pichold fr">
+        <div class = "pic hs7"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>3</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>3 </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>3</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+          <div class = "mont monthead">12 Falolu street, Surulere Lagos</div>
+          <div class = "premont mont">Lagos Mainland, Suruleres</div>
+          <div class = "price mont">N 2.5 BIllion</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;Condomonium</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->  
+
+    </div><!--display-->
+   </div><!--col35-->
+<div class = "col65 fullheight whitebg hundred">
+    <div id = "map"></div>
+    <div id = "mapinset" (click) = "switchbase()"></div>
+</div>
+   </div><!--row-->
+<div class = "modal" *ngIf = "modal"><div class = "mchild">
+    <div class = "headmchild">
+        <div class = "h mont">Steak House Resturant <i class = "fa fa-close close" (click) = "openmodal()"></i></div>
+        <div class = "ex mont">16 Marginsplint street Lagos</div>
+        <div><i class = "fa fa-star istar"></i><i class = "fa fa-star istar"></i><i class = "fa fa-star istar"></i><i class = "fa fa-star istar"></i><i class = "fa fa-star istar passive"></i></div>
+    </div><!--headmchild-->
+    <div class = "bodymchild">
+        <div class = "half  darkhalf"><div class = "mimg hs1"></div></div>
+    <div class = "half"></div>
+    </div><!--bodymchild-->
+    </div></div>
