@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "leaflet-extra-markers",
+        "scope": null,
+        "escapedName": "leaflet-extra-markers",
+        "name": "leaflet-extra-markers",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\felix\\Documents\\BnH\\BnH"
+    ]
+  ],
+  "_from": "leaflet-extra-markers@latest",
+  "_id": "leaflet-extra-markers@1.0.6",
+  "_inCache": true,
+  "_location": "/leaflet-extra-markers",
+  "_nodeVersion": "4.4.7",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/leaflet-extra-markers-1.0.6.tgz_1474593249841_0.5018908905331045"
+  },
+  "_npmUser": {
+    "name": "danwild",
+    "email": "danwild@y7mail.com.au"
+  },
+  "_npmVersion": "3.10.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "leaflet-extra-markers",
+    "scope": null,
+    "escapedName": "leaflet-extra-markers",
+    "name": "leaflet-extra-markers",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/leaflet-extra-markers/-/leaflet-extra-markers-1.0.6.tgz",
+  "_shasum": "e97517006d327e25b2e09be63a6818702f70ad16",
+  "_shrinkwrap": null,
+  "_spec": "leaflet-extra-markers",
+  "_where": "C:\\Users\\felix\\Documents\\BnH\\BnH",
+  "author": {
+    "name": "coryasilva",
+    "email": "https://github.com/coryasilva"
+  },
+  "bugs": {
+    "url": "https://github.com/coryasilva/Leaflet.ExtraMarkers/issues"
+  },
+  "dependencies": {},
+  "description": "NPM wrapper for coryasilva's: Custom Markers for Leaflet JS based on Awesome Markers",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-less": "^1.1.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "less-plugin-autoprefix": "^1.5.1",
+    "time-grunt": "^1.1.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "e97517006d327e25b2e09be63a6818702f70ad16",
+    "tarball": "https://registry.npmjs.org/leaflet-extra-markers/-/leaflet-extra-markers-1.0.6.tgz"
+  },
+  "gitHead": "bc34114d8a1ed684a788e4815bca7fa3fd119510",
+  "homepage": "https://github.com/coryasilva/Leaflet.ExtraMarkers#readme",
+  "main": "src/assets/js/leaflet.extra-markers.js",
+  "maintainers": [
+    {
+      "name": "danwild",
+      "email": "danwild@y7mail.com.au"
+    }
+  ],
+  "name": "leaflet-extra-markers",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coryasilva/Leaflet.ExtraMarkers.git"
+  },
+  "scripts": {},
+  "title": "Leaflet ExtraMarkers",
+  "url": "https://github.com/coryasilva/Leaflet.ExtraMarkers/",
+  "version": "1.0.6"
+}

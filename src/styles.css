@@ -64,13 +64,14 @@
 .pright{box-sizing:border-box; padding-right:30px;} 
 .inputs input[type = "text"], select{display:inline-block; width:80%; vertical-align:center; font-size:14px; color:#222; height:100%; vertical-align:top; text-indent:14px;  overflow:hidden;  background:none; border:none; line-height:35px; }
 select{width:100%;}
-.inp{width:60%; height:100%;   color: #d2d2d2; display:inline-block; line-height:35px; font-family:Open Sans; vertical-align:top; text-align:center; font-size:15px!important; }
+.inp{width:60%; height:100%; border-style:none!important;    color: #d2d2d2; display:inline-block!important; line-height:35px; font-family:Open Sans; vertical-align:top; text-align:center; font-size:15px!important; }
 .rangeitem{min-height:60px; font-family:Open Sans!important; margin-top:0px; padding:3px; box-sizing:border-box;   font-size:10px;}
 .kii{font-size:16px!important; line-height:35px!important;}
 .large{height:35px; box-sizing:border-box;} .mtop2{ min-height:60px; margin-top:5px;  }
 .bbottom{padding-bottom:20px; box-sizing:border-box; border-bottom:inset 1px rgba(0,0,0,0.08);}
-.display{margin-top:10px; height:350px; font-size:0px;}
-.pichold{width:49.5%;  overflow:hidden; border-radius:4px; display:inline-block; height:100%; box-sizing:border-box; padding-bottom:15px; background:#fff; box-shadow:0px 1px 4px rgba(0,0,0,0.1);}
+.display{margin-top:10px; height:350px; font-size:0px;} .display2{margin-top:10px; display:inline-block; width:49.5%;  height:350px; font-size:0px;}
+.pichold, .pichold2{width:49.5%;  overflow:hidden; border-radius:4px; display:inline-block; height:100%; box-sizing:border-box; padding-bottom:15px; background:#fff; box-shadow:0px 1px 4px rgba(0,0,0,0.1);}
+.pichold2{width:100%;}
 .pic{height:60%;width:100%; background-size:cover; background-position:center; background-repeat:no-repeat;} .desc{height:40%; box-sizing:border-box; padding:10px 0px; text-align:center;}
 
 .lposition{height:88%; background:rgba(0,0,0,0.1);}
@@ -143,6 +144,7 @@ and (min-width : 1025px) { /* Desktop */
 .nopc{display:none!important;}
 .full{width:100%; min-height:250px; display:block;  overflow-x:hidden;}
 .panel{min-width:50px!important;}
+.psst{font-size:14px; fon-family:Open Sans;}
 /*forms */
 
 }

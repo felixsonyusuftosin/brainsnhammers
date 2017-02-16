@@ -6,7 +6,7 @@
 
     <div class = "row fullheight"> 
         <div class = "padding bx col4 contain logo fullheight"></div>
-        <div class = " inlineblock fr ff ">
+        <div class = " inlineblock fr ff "> 
             <span class = "pc " >Sign in</span><span class = "pc ">Register</span><div class = "btnthing  pc inlineblock "><i class = "fa fa-plus "></i></div><span><i class = "fa fa-bars  ii pc "></i></span>
         </div>
       </div>
@@ -26,17 +26,19 @@
    </div><!--row-->
    <div class  = "row hidden mbot mtop pc">
     <div class = "col5 pright"><div class = " h4 inputs">
-        <select  placeholder = "All">
+        <select  placeholder = "All" [(ngModel)] = "buildingtype">
             <option selected = "selected">All</option>
-             <option>Duplex</option>
-             <option>Story Building</option>
-             <option>Bungalow</option>
-             <option>Others</option>
+             <option [value] = "1">Duplex</option>
+             <option [value] = "2"> Maisonette</option>
+             <option [value] = "3">Terrace</option>
+             <option [value] = "4">Flats</option>
+             <option [value] = "5">Bungalow</option>
+             <option [value] = "6">Others</option>
         </select>
         </div></div>
     <div class = "col5 colpadding hidden">
-        <div class = "smalldivs ltop"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div>
-        <div class  = "smalldivs fr ltop"><div class = " lh rgt inputs"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div></div>
+        <div class = "smalldivs ltop"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><input class = "inp" type = "number" [(ngModel)]  = "bedroom" placeholder = "Any"><i class = "fa fa-plus ki"></i> </div></div>
+        <div class  = "smalldivs fr ltop"><div class = " lh rgt inputs"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><input [(ngModel)]  = "bathroom" type = "number" class = "inp" placeholder = "Any"><i class = "fa fa-plus ki"></i> </div></div></div>
     </div>
     
    </div><!--row-->
@@ -54,10 +56,12 @@
         <input type="text"  #example_id name="example_name" value="" />
     </div>
     </div>
-    <div class = "col5 colpadding hidden"><div class = " h4 inputs large"><input type = "text" placeholder = "All"><i class = "fa fa-map-marker kii"></i></div></div>
+    <div class = "col5 colpadding hidden"><div class = " h4 inputs large"><input type = "text" [(ngModel)] = "location"  placeholder = "All"><i class = "fa fa-map-marker kii"></i></div></div>
 
        <!-- <div class = "smalldivs ltop"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div>
         <div class  = "smalldivs fr ltop"><div class = " lh rgt inputs"><div class = " lh inputs"><i class = "fa fa-minus ki "></i><div class = "inp">Any</div><i class = "fa fa-plus ki"></i> </div></div></div>-->
+            <div class = "price mont fr psst" *ngIf = "!loading" (click) = "search()">Find</div>
+             <div class = "price mont fr psst" *ngIf = "loading"><i class = "fa fa-spinner fa-pulse"></i></div>
     </div>
 
 <div class  = "row hidden mb pd">
@@ -77,10 +81,44 @@
     </div>
 
    </div><!--row-->
+
     <div class = "row hidden mbot pd">
          <span class = "h3 lh gray uppercase fl">Results</span>
           <span class = "h5 lh gray capitalize fr">Display:&nbsp;&nbsp;&nbsp;<i class = "fa fa-th-large blue"></i>&nbsp;&nbsp;&nbsp;<i class = "fa fa-th-list gray"></i></span>
      </div><!--row-->
+        <div *ngIf = "objects.length > 0">
+       <div class  = "display2"  *ngFor = "let i of objects" [ngClass] = "i.classname" (click) =  "openmodal2(i)">
+    <div class = "pichold2 " >
+    <div class = "pic " [ngStyle]="{'background-image': 'url(' + i.pics[i.imlist] + ')'}"><div class = "lposition"></div>
+     <div class = "ldiv">
+    <div class = "ink">
+     <div class = "i">
+        <i class = "fa fa-hotel"></i><span>{{i.bedroom}}</span>
+        </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-bath"></i><span>{{i.bathroom}} </span>
+            </div><!--i-->
+        <div class = "i">
+         <i class = "fa fa-square-o"></i><span>{{i.price}}</span>
+        </div>
+        <div class = "i">
+         <i class = "fa fa-car"></i><span>1</span>
+         </div>
+    </div><!--ink-->
+ 
+    </div><!--ldiv-->
+    </div> <!--pics-->    
+      <div class = "desc">
+          <div class = "mont monthead">{{i.address}}</div>
+          <div class = "premont mont">{{i.districtArea}}, {{i.town}} {{i.state}}</div>
+          <div class = "price mont">N {{i.price}}</div>
+          <div class = "compartment mont"><i class = "fa fa-building-o"></i>&nbsp;&nbsp;{{i.distance}} to search area</div>
+          <div class = "star"><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i><i class = "fa fa-star"></i></div>
+          </div><!--desc-->
+          </div><!--pichold-->                    
+    </div><!--display-->
+    </div><!--ther is result -->
+     <div *ngIf = "objects.length < 1">
      <div class  = "display" (click) = "openmodal()">
     <div class = "pichold fl">
     <div class = "pic hs2"><div class = "lposition"></div>
@@ -139,7 +177,7 @@
           </div><!--desc-->
           </div><!--pichold-->            
     </div><!--display-->
-     <div class  = "display" (click) = "openmodal()">   
+   <div class  = "display" (click) = "openmodal()">   
         <div class = "pichold fl">
     <div class = "pic hs4"><div class = "lposition"></div>
      <div class = "ldiv">
@@ -316,6 +354,7 @@
           </div><!--pichold-->  
 
     </div><!--display-->
+    </div> <!--ngif no result-->
    </div><!--col35-->
 <div class = "col65 fullheight whitebg hundred">
     <div id = "map"></div>
@@ -324,12 +363,12 @@
    </div><!--row-->
 <div class = "modal" *ngIf = "modal"><div class = "mchild">
     <div class = "headmchild">
-        <div class = "h mont">Steak House Resturant <i class = "fa fa-close close" (click) = "openmodal()"></i></div>
-        <div class = "ex mont">16 Marginsplint street Lagos</div>
+        <div class = "h mont">{{inview.propertyType}} @<i class = "fa fa-close close" (click) = "openmodal()"></i></div>
+        <div class = "ex mont">{{inview.address}}</div>
         <div><i class = "fa fa-star istar"></i><i class = "fa fa-star istar"></i><i class = "fa fa-star istar"></i><i class = "fa fa-star istar"></i><i class = "fa fa-star istar passive"></i></div>
     </div><!--headmchild-->
     <div class = "bodymchild">
-        <div class = "half  darkhalf"><div class = "mimg hs1"></div></div>
+        <div class = "half  darkhalf"><div class = "mimg "    [ngStyle]="{'background-image': 'url(' +inview.pics[inview.imlist] + ')'}" ></div></div>
     <div class = "half"></div>
     </div><!--bodymchild-->
     </div></div>

@@ -4,13 +4,15 @@ import * as Leaflet from 'leaflet';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-declare let L: any;
-declare let grappHopper:any;
-let Pulse = require('leaflet-pulse-icon');
-let Routing = require('leaflet-routing-machine');
-let bing = require('leaflet-bing-layer');
-let easybutton = require('leaflet-easybutton');
-let zoomBox = require('leaflet-zoombox');
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
+declare const L: any;
+const pulse = require('leaflet-pulse-icon');
+const Routing = require('leaflet-routing-machine');
+const bing = require('leaflet-bing-layer');
+const easybutton = require('leaflet-easybutton');
+const extraMarkers = require('leaflet-extra-markers');
+const zoomBox = require('leaflet-zoombox');
 @Injectable()
 export  class MapObjectService{
 options:any = {'bingMapsKey':' AuyEx9iRRzYb8lUwuLFvNvRttyzrgrgLDNLcFp8IYSSC1z93fYIcxfp-298VK__L','imagerySet':'Road',attribution: '' }
@@ -18,13 +20,24 @@ optionssat:any = {'bingMapsKey':' Ap1SHDN96htRONGcKqC5ZJxlY8svqfFfFOOgESUURUk5GW
 optionsboth:any  = {'bingMapsKey':' Ap1SHDN96htRONGcKqC5ZJxlY8svqfFfFOOgESUURUk5GWVwtwmeQdUVduOst8TF','imagerySet':'AerialWithLabels' ,attribution: '' }
 map:any;
 bingLayer:any =   L.tileLayer.bing(this.options);
+userclick:any;
+userlat:any; 
+geodist:number;
+cc:any;
+userlng:any;
+interact: any;
+private interactstream = new BehaviorSubject<any>({});
+interact2: any;
+private interactstream2 = new BehaviorSubject<any>({});
+usernumber:number = 20;
+userdistance:number  = 20;
 currentid:any;
 markerlayer:any;
 bingLayerSat:any =   L.tileLayer.bing(this.optionssat);
 bingLayerBoth:any =   L.tileLayer.bing(this.optionsboth);
 //graphopper = L.Routing.graphHopper('5f4ee7ea-7e82-4acb-bc70-0b7350238863'); 
 zoomTo:boolean = false;
-attr:string =  "Swicth to Satelite";
+attr:string =  'Swicth to Satelite';
 extent:any = [];
 featuregroup:any;
 routes:any;
@@ -53,6 +66,9 @@ tolat:number = 0;
 tolng:number = 0;
 bounds:any;
 geoj:any;
+userclick1:any;
+userclick2:any;
+
 pulsingIcon :any;
 locationMarker:Leaflet.Marker;	
 latwatch2:number = 0;
@@ -62,8 +78,8 @@ extentCount:number = 0;
 id:string;
 geojson2:any;
 layergroup:any;
-output:any[];
- 
+output:any[] = [];
+mapcount:number = 0;
 //navCtrl:NavController;
 //navParams: NavParams;
 zoomControl:boolean = false;
@@ -76,15 +92,16 @@ attribution: '',
 });
 
 //frontLayer:any = new Leaflet.Google('ROADMAP');
-view:any[] =[9.275622176792112, 7.591552734375001];
- 
+view:any[] =[6.53023418949625,3.3561515808105473];
 
-zoom:number = 6;
+zoom:number = 12;
 previousextent:boolean = false;
  p:any;
 preitems:any;
 constructor(){
-  this.viewmap = "sat"
+  this.viewmap = 'sat';
+  this.interact = this.interactstream.asObservable();
+   this.interact2 = this.interactstream2.asObservable();
 }
  
  
@@ -93,7 +110,7 @@ switchbase(layer){
   switch(layer){
 case 'sat':		
 	layerbase = this.bingLayerBoth;
-  this.attr = "Swith to Map";
+  this.attr = 'Swith to Map';
   this.viewmap = "road"
 		break;
 	case 'road':
@@ -155,7 +172,70 @@ window.setTimeout(function() {
    }, 1000); 
 
 }
+onesearch(){
+const th = this;
+th.map.on('click', function(e) {
+    th.userlat =  e.latlng.lat ;
+    th.userlng = e.latlng.lng;
+    try{
+      th.map.removeLayer(th.userclick)
+    }catch(err){};
+    let iconn = L.icon.pulse({iconSize:[10,10],color:'green'});
+    th.userclick =  L.marker([ e.latlng.lat,  e.latlng.lng],{icon: iconn}).addTo(th.map);
+    let data = {lat: e.latlng.lat,  lng:e.latlng.lng}
+    th.interactstream.next(data);
+  
+});
+}
+ontwo(){
+const th = this;
+th.off();
+th.map.on('click', function(e) {
+ 
+  th.mapcount= th.mapcount + 1;
+    console.log(th.mapcount);
+    if (th.mapcount === 1){
+    try{
+    th.map.removeLayer(th.userclick1)
+    }catch(err){};
+    th.fromlat =  e.latlng.lat;
+    th.fromlng = e.latlng.lng;
+    let iconn = L.icon.pulse({iconSize:[10,10],color:'green'});
+    th.userclick1 =  L.marker([ e.latlng.lat,  e.latlng.lng],{icon: iconn}).addTo(th.map);
+    }else if(th.mapcount === 2){
+        try{
+    th.map.removeLayer(th.userclick2);
+    }catch(err){};
+     th.tolat =   e.latlng.lat;
+     th.tolng =  e.latlng.lng;
+    let iconn = L.icon.pulse({iconSize:[10,10],color:'red'});
+    th.userclick2=  L.marker([ e.latlng.lat,  e.latlng.lng],{icon: iconn}).addTo(th.map);
+     console.log(th.userclick2);
+    let data = {fromlat: th.fromlat, fromlng:th.fromlng,  tolat:th.tolat, tolng:th.tolng}
+    th.interactstream2.next(data);
+    }  else{
+      this.mapcount = 0;
+       try{
+        th.map.removeLayer(th.userclick1)
+         }catch(err){};
+         try{
+      th.map.removeLayer(th.userclick2)
+    }catch(err){};
+    }
+});
+}
+off(){
+  this.mapcount = 0;
+  this.map.off('click');
+         try{
+      this.map.removeLayer(this.userclick1)
+    }catch(err){};
+           try{
+      this.map.removeLayer(this.userclick2)
+    }catch(err){};
+    this.output = [];
 
+}
 
 insetmap(){
   let th = this;
@@ -164,8 +244,8 @@ insetmap(){
   th.mapinset.setZoom(th.map.getZoom() + 1) ;
   })
   th.map.on('zoomend',function(){
-  /*console.log(th.map.getCenter());
-  console.log(th.map.getZoom());*/
+  console.log(th.map.getCenter());
+  console.log(th.map.getZoom());
   th.mapinset.setView(th.map.getCenter());
   th.mapinset.setZoom(th.map.getZoom() + 1) ;
   })
@@ -176,13 +256,21 @@ insetmap(){
 }
 
 initialize():Promise<any>{
+
 let th = this;
 return new Promise(resolve=>{
 th.map =L.map('map', {zoomControl:true, fadeAnimation:true,zoomAnimation:true, inertia:true, maxZoom:28}).setView(th.view, th.zoom).invalidateSize(true);
 //th.map.addLayer(th.frontLayer); 
+th.map.on('zoom',function(){
+  if (th.map.getZoom() > 18){
+   th.map.setZoom(18);
+}
+})
+
 th.mainLayer = th.bingLayer;
 th.map.addLayer(th.mainLayer);
 th.fullextent = th.map.getBounds();
+th.map.fitBounds(th.fullextent);
 //th.map.setMaxBounds(th.fullextent);
 th.map.invalidateSize(true);
 L.easyButton('fa-crosshairs', function(btn, map){
@@ -326,8 +414,15 @@ let llng = L.latLng(lat,lng)
 
 }//locatepoint
 resetmap(){
+this.output = [];
 this.invalidate(this.map);
 let map = this.map;
+ try{
+  this.map.removeLayer(this.userclick1)
+ }catch(err){};
+ try{
+ this.map.removeLayer(this.userclick2)
+    }catch(err){};
 try{map.removeLayer(this.pulsingIcon);}
 catch(err){console.log(err);}
 try{map.removeLayer(this.featuregroup);}
@@ -335,7 +430,12 @@ catch(err){console.log(err);}
 try{map.removeLayer(this.locationMarker);	}
 catch(err){console.log(err);}
 this.removeroutes();
-
+try{
+  map.removeLayer(this.userclick)
+}catch(err){};
+try{
+  map.removeLayer(this.cc)
+}catch(err){};
 };
 removeroutes(){
 let map = this.map;
@@ -348,6 +448,13 @@ this.routes = null;
 catch(err){
 console.log('No control');	
 }	
+try{
+this.geoj.clearLayers();
+}catch(err){}
+try{
+this.layergroup.clearLayers();
+}catch(err){}
+this.off();
 };
 /*resetroutes(newroutes){
 	this.setWaypoints(newroutes);	
@@ -417,13 +524,73 @@ th.routes =new L.Routing.control({
      console.log(this.time + 'time is');	
    
 }
-
-loadgeojson (dat, map){
-if (dat.length > 0){
-  let data = dat[0];
-  console.log(data);
+si(data){ 
+  let redMarker;
+   switch(data){
+    case 'Maisonette':
+    redMarker = L.ExtraMarkers.icon({
+    icon: 'fa-truck',
+    markerColor: 'red',
+    shape: 'star',
+    prefix: 'fa'
+  });
+      break;
+    case 'Duplex':
+    redMarker = L.ExtraMarkers.icon({
+    icon: 'fa-motorcycle',
+    markerColor: 'red',
+    shape: 'circle',
+    prefix: 'fa'
+  });
+      break;
+    case 'Terrace':
+    redMarker = L.ExtraMarkers.icon({
+    icon: 'fa-male',
+    markerColor: 'yellow',
+    shape: 'square',
+    prefix: 'fa'
+  });
+      break;
+    case 'Flats':
+    redMarker = L.ExtraMarkers.icon({
+    icon: 'fa-bus',
+    markerColor: 'green',
+    shape: 'square',
+    prefix: 'fa'
+  });
+      break;
+    case 'Bungalow':
+    redMarker = L.ExtraMarkers.icon({
+    icon: 'fa-industry',
+    markerColor: 'purple',
+    shape: 'penta',
+    prefix: 'fa'
+  });
+      break;
+    case 'Others':
+    redMarker = L.ExtraMarkers.icon({
+    icon: 'fa-wheelchair-alt',
+    markerColor: 'green',
+    shape: 'circle',
+    prefix: 'fa'
+  });
+   default:
+    redMarker = L.ExtraMarkers.icon({
+    icon: 'fa-star-o',
+    markerColor: 'gray',
+    shape: 'circle',
+    prefix: 'fa'
+  });
+     }
+return redMarker;
+ }
+loadgeojson (dat){
+let map = this.map;
+const th = this;
+let data = dat;
+console.log(data);
 this.output = [];
-let th = this;
+
 th.layergroup = L.featureGroup();
 if (! map.hasLayer(th.layergroup)){
 map.addLayer(th.layergroup);
@@ -437,22 +604,30 @@ console.log(err);
 }
 th.layergroup.clearLayers();}
 th.layergroup = null;
+try{
+th.geoj.clearLayers();
+}catch(err){console.log(err)}
+try{
+th.layergroup.clearLayers();
+}catch(err){}
 th.geoj = {};
 th.geoj =  L.geoJson(data,{
+   pointToLayer : function(feature, latlng){
+  //let geojsonMarkerOptions = {className:'contai' , html :'<div class = "icon"></div> '};
+  let divmarker =  th.si(feature.properties.propertyType)
+  th.geodist = feature.properties.price;
+try{
+let lmarker = L.marker(latlng, {icon:divmarker})
+return lmarker;
+}catch(err){console.log(err)};
 
-  // pointToLayer : function(feature, latlng){
-      // console.log(feature)
- //let geojsonMarkerOptions = {className:'contai' , html :'<div class = "icon"></div> '};
-  //let divmarker =  L.divIcon(geojsonMarkerOptions);
-//let lmarker = L.marker(latlng, {icon:divmarker})
-//return lmarker;
-//},
+},
 onEachFeature :function(feature, layer){
 let obj = {};
 let  lay;
+try{
 let llng = layer._latlng;
 let featlat = llng.lat;
-let featlng = llng.lng;
 layer.feature.riseOnHover = true;
 obj['lat'] = llng.lat;
 obj['lng'] = llng.lng;
@@ -461,23 +636,39 @@ obj['lng'] = llng.lng;
 					   });
                    obj.layer = feature.properties._id	
                    console.log(obj);*/
-layer._leaflet_id = feature.properties._id;
-layer.bindPopup(feature.properties._id);
+layer._leaflet_id = feature.properties.id;
+th.output.push(feature.properties)
+
+layer.bindPopup(feature.properties.id);
+}catch(err){console.log(err)};
+
 }
 
  });//loadgeojson
 		//th.group();
+try{
+  map.removeLayer(th.layergroup);
+  th.layergroup = null;
+  map.fitBounds(th.fullextent);
+}catch(err){console.log(err)}
+try{
+  map.removeLayer(th.cc);
+}catch(err){};
+//th.cc = L.circle(newl,th.geodist * 1000, {stroke:false, opacity:0.2, fillOpacity:0.1}).addTo(map);
 th.layergroup =new L.featureGroup();
 th.layergroup.addLayer(th.geoj);
 
-let lg = th.layergroup;		
+let lg = th.layergroup;	
+	
 map.addLayer(th.layergroup);	
 let bng = lg.getBounds();
 map.fitBounds(bng);
+if (map.getZoom() > 18) {
+map.setZoom(18);
+}
 map.panInsideBounds(bng);
      //rs(th.output);
 
-};
 
 };
 
